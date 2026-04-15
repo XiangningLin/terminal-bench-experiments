@@ -1,0 +1,159 @@
+[
+  {
+    "name": "adapter-experiments-batch1-phase4",
+    "version": "1.0",
+    "description": "Batch1 coordinated experiments phase4 (remaining full set after earlier phases).\n\nProgressive subset derived from batch1_all.lock.json with 100% per source dataset (rounding=ceil, minimum_tasks_per_source=1). Excluding tasks from: registry.lock.json, registry.lock.json. Selected tasks: aime@1.0:54/60, algotune@1.0:138/154, swe-lancer-diamond@all:180/200, arc_agi_2@1.0:90/100, bfcl_parity@1.0:110/123, bixbench-cli@1.5:45/50, compilebench@1.0:13/15, gpqa-diamond@1.0:178/198, humanevalfix@1.0:147/164, ineqmath@1.0:90/100, labbench@1.0:162/181, mmau@1.0:900/1000, qcircuitbench@1.0:25/28, reasoning-gym-easy@parity:259/288, reasoning-gym-hard@parity:259/288, crustbench@1.0:90/100, sldbench@1.0:7/8, spider2-dbt@1.0:57/64, strongreject@parity:135/150, swebenchpro@1.0:90/100, swesmith@1.0:90/100, mmmlu@parity:135/150, swtbench-verified@1.0:45/50, usaco@2.0:90/100, lawbench@1.0:162/181, kumo@parity:190/212, medagentbench@1.0:90/100, simpleqa@1.0:180/200, gaia@1.0:148/165, swebench-verified@1.0:90/100, aider-polyglot@1.0:202/225, livecodebench@6.0:90/100, codepde@1.0:4/5, replicationbench@1.0:81/90.",
+    "tasks": [
+      {
+        "name": "bernstein_vazirani-n8",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/bernstein_vazirani-n8"
+      },
+      {
+        "name": "bernstein_vazirani_oracle-n9",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/bernstein_vazirani_oracle-n9"
+      },
+      {
+        "name": "clifford_1-n3",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/clifford_1-n3"
+      },
+      {
+        "name": "data_encoding-n2",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/data_encoding-n2"
+      },
+      {
+        "name": "deutsch_jozsa-n8",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/deutsch_jozsa-n8"
+      },
+      {
+        "name": "deutsch_jozsa_oracle-n7",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/deutsch_jozsa_oracle-n7"
+      },
+      {
+        "name": "efficient_su2-n8",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/efficient_su2-n8"
+      },
+      {
+        "name": "generalized_simon_multi-n8",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/generalized_simon_multi-n8"
+      },
+      {
+        "name": "generalized_simon_multi_oracle-n8",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/generalized_simon_multi_oracle-n8"
+      },
+      {
+        "name": "generalized_simon_ternary-n3",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/generalized_simon_ternary-n3"
+      },
+      {
+        "name": "generalized_simon_ternary_oracle-n2",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/generalized_simon_ternary_oracle-n2"
+      },
+      {
+        "name": "ghz_state-n8",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/ghz_state-n8"
+      },
+      {
+        "name": "grover-n8",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/grover-n8"
+      },
+      {
+        "name": "grover_oracle-n5",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/grover_oracle-n5"
+      },
+      {
+        "name": "phase_estimation-n8",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/phase_estimation-n8"
+      },
+      {
+        "name": "qae-n8",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/qae-n8"
+      },
+      {
+        "name": "qaoa-n8",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/qaoa-n8"
+      },
+      {
+        "name": "quantum_fourier_transform-n8",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/quantum_fourier_transform-n8"
+      },
+      {
+        "name": "random_number_generator-n5",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/random_number_generator-n5"
+      },
+      {
+        "name": "shor-n18",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/shor-n18"
+      },
+      {
+        "name": "simon-n8",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/simon-n8"
+      },
+      {
+        "name": "simon_oracle-n4",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/simon_oracle-n4"
+      },
+      {
+        "name": "swap_test-n8",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/swap_test-n8"
+      },
+      {
+        "name": "universal_1-n4",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/universal_1-n4"
+      },
+      {
+        "name": "w_state-n8",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "3def19f4b1ec08330b83e7f85502aea1aa952c4a",
+        "path": "datasets/qcircuitbench/w_state-n8"
+      }
+    ]
+  }
+]

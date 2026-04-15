@@ -1,0 +1,549 @@
+[
+  {
+    "name": "adapter-experiments-batch1-phase3",
+    "version": "1.0",
+    "description": "Batch1 coordinated experiments phase3 (10% cumulative minus earlier phases).\n\nProgressive subset derived from batch1_all.lock.json with 10% per source dataset (rounding=ceil, minimum_tasks_per_source=1). Excluding tasks from: registry.lock.json. Selected tasks: aime@1.0:5/60, algotune@1.0:14/154, swe-lancer-diamond@all:18/200, arc_agi_2@1.0:9/100, bfcl_parity@1.0:11/123, bixbench-cli@1.5:4/50, compilebench@1.0:1/15, gpqa-diamond@1.0:18/198, humanevalfix@1.0:15/164, ineqmath@1.0:9/100, labbench@1.0:17/181, mmau@1.0:90/1000, qcircuitbench@1.0:2/28, reasoning-gym-easy@parity:26/288, reasoning-gym-hard@parity:26/288, crustbench@1.0:9/100, sldbench@1.0:0/8, spider2-dbt@1.0:6/64, strongreject@parity:13/150, swebenchpro@1.0:9/100, swesmith@1.0:9/100, mmmlu@parity:13/150, swtbench-verified@1.0:4/50, usaco@2.0:9/100, lawbench@1.0:17/181, kumo@parity:19/212, medagentbench@1.0:9/100, simpleqa@1.0:18/200, gaia@1.0:15/165, swebench-verified@1.0:9/100, aider-polyglot@1.0:20/225, livecodebench@6.0:9/100, codepde@1.0:0/5, replicationbench@1.0:8/90.",
+    "tasks": [
+      {
+        "name": "002ebba8-7aa4-445b-aab3-ed17e592cd30",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/002ebba8-7aa4-445b-aab3-ed17e592cd30"
+      },
+      {
+        "name": "004fd9c5-1f2b-4c16-939b-4c75e39c84ba",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/004fd9c5-1f2b-4c16-939b-4c75e39c84ba"
+      },
+      {
+        "name": "01fb92c4-7c7a-4005-8c1a-91e8a76d6f51",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/01fb92c4-7c7a-4005-8c1a-91e8a76d6f51"
+      },
+      {
+        "name": "05eb32f6-5ad4-4abc-9a9a-0a252329e4ba",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/05eb32f6-5ad4-4abc-9a9a-0a252329e4ba"
+      },
+      {
+        "name": "06f95aee-528e-4665-b718-ae876cc11b7c",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/06f95aee-528e-4665-b718-ae876cc11b7c"
+      },
+      {
+        "name": "0866c7a0-3361-4538-98d0-fec5c8aedd01",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/0866c7a0-3361-4538-98d0-fec5c8aedd01"
+      },
+      {
+        "name": "0be58acd-2201-4d00-8357-0b0c1ab3b335",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/0be58acd-2201-4d00-8357-0b0c1ab3b335"
+      },
+      {
+        "name": "0de9f80e-8070-4ede-845b-b41bfc9bdbf7",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/0de9f80e-8070-4ede-845b-b41bfc9bdbf7"
+      },
+      {
+        "name": "129ad635-80b3-4ed4-8b37-b163fa8f3a22",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/129ad635-80b3-4ed4-8b37-b163fa8f3a22"
+      },
+      {
+        "name": "13cd0db2-cb58-4141-886c-398f59a874cd",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/13cd0db2-cb58-4141-886c-398f59a874cd"
+      },
+      {
+        "name": "1910e3db-5030-4255-8b0d-053542050037",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/1910e3db-5030-4255-8b0d-053542050037"
+      },
+      {
+        "name": "1a5dd76a-7905-4a83-bd88-7ae26730656d",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/1a5dd76a-7905-4a83-bd88-7ae26730656d"
+      },
+      {
+        "name": "1beb87ed-8d10-4c39-87b4-81365b947fb8",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/1beb87ed-8d10-4c39-87b4-81365b947fb8"
+      },
+      {
+        "name": "1c0358cc-85c4-4d64-afa7-8f0684a8c40d",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/1c0358cc-85c4-4d64-afa7-8f0684a8c40d"
+      },
+      {
+        "name": "1e048a1d-5344-441a-95d9-5018adeac462",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/1e048a1d-5344-441a-95d9-5018adeac462"
+      },
+      {
+        "name": "20cf7678-509c-41fc-9d1c-4a1f000513ee",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/20cf7678-509c-41fc-9d1c-4a1f000513ee"
+      },
+      {
+        "name": "239ec016-c087-4a7b-a64e-b99e4dece85e",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/239ec016-c087-4a7b-a64e-b99e4dece85e"
+      },
+      {
+        "name": "24d64f05-1113-4081-847f-60023addbae7",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/24d64f05-1113-4081-847f-60023addbae7"
+      },
+      {
+        "name": "2573bb7c-5319-4e62-aca6-f90a7e5e7cd5",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/2573bb7c-5319-4e62-aca6-f90a7e5e7cd5"
+      },
+      {
+        "name": "25941a11-499f-420c-a65c-26417a8378b4",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/25941a11-499f-420c-a65c-26417a8378b4"
+      },
+      {
+        "name": "27e29e2e-28d8-45e2-be0c-697af91caa48",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/27e29e2e-28d8-45e2-be0c-697af91caa48"
+      },
+      {
+        "name": "2ac88129-1a51-41fd-8443-37dd4b070b05",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/2ac88129-1a51-41fd-8443-37dd4b070b05"
+      },
+      {
+        "name": "2cf092cc-252b-4de8-9e51-cc17f5cae742",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/2cf092cc-252b-4de8-9e51-cc17f5cae742"
+      },
+      {
+        "name": "31564584-4c55-4f17-b013-62afc898c135",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/31564584-4c55-4f17-b013-62afc898c135"
+      },
+      {
+        "name": "3452703b-ca3b-4f6c-bccc-0b24a053cf0a",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/3452703b-ca3b-4f6c-bccc-0b24a053cf0a"
+      },
+      {
+        "name": "3580ca69-7d52-4b48-bb13-63e0fb898439",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/3580ca69-7d52-4b48-bb13-63e0fb898439"
+      },
+      {
+        "name": "382905b7-9d0c-4a6a-bf84-cc4635b65586",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/382905b7-9d0c-4a6a-bf84-cc4635b65586"
+      },
+      {
+        "name": "38dbb2bf-62ca-4ecd-9ece-0618e060f6b3",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/38dbb2bf-62ca-4ecd-9ece-0618e060f6b3"
+      },
+      {
+        "name": "40acec85-b206-4c9f-9adc-744cd7ee5413",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/40acec85-b206-4c9f-9adc-744cd7ee5413"
+      },
+      {
+        "name": "421fcbf8-7f60-4770-8923-512323e5efba",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/421fcbf8-7f60-4770-8923-512323e5efba"
+      },
+      {
+        "name": "4452ab49-197b-4e61-8eb5-458999f0e914",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/4452ab49-197b-4e61-8eb5-458999f0e914"
+      },
+      {
+        "name": "478408b2-0f4a-45a8-86d5-8fce50796b7c",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/478408b2-0f4a-45a8-86d5-8fce50796b7c"
+      },
+      {
+        "name": "47ae81d9-8cb5-4267-9394-2f511cc84871",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/47ae81d9-8cb5-4267-9394-2f511cc84871"
+      },
+      {
+        "name": "4ef68d01-f537-44fc-bffe-9f05fa48e5cd",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/4ef68d01-f537-44fc-bffe-9f05fa48e5cd"
+      },
+      {
+        "name": "516653d5-79d7-404e-a208-62367fdc59b7",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/516653d5-79d7-404e-a208-62367fdc59b7"
+      },
+      {
+        "name": "520aea17-b159-4d22-ad68-978fcc152e27",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/520aea17-b159-4d22-ad68-978fcc152e27"
+      },
+      {
+        "name": "5c793ad0-ee27-4cd3-b311-1509fe746962",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/5c793ad0-ee27-4cd3-b311-1509fe746962"
+      },
+      {
+        "name": "5e398782-d659-4b0c-bc19-ac3cfbd9a113",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/5e398782-d659-4b0c-bc19-ac3cfbd9a113"
+      },
+      {
+        "name": "5e801057-97b3-4c4a-b962-8f964ce77bd2",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/5e801057-97b3-4c4a-b962-8f964ce77bd2"
+      },
+      {
+        "name": "6658e43e-f56d-44a2-ab80-6c73a40ee713",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/6658e43e-f56d-44a2-ab80-6c73a40ee713"
+      },
+      {
+        "name": "6aa80dfd-eb32-41c9-abeb-4bd66c460868",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/6aa80dfd-eb32-41c9-abeb-4bd66c460868"
+      },
+      {
+        "name": "6aee68bf-6629-442b-981d-ae8195597c8e",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/6aee68bf-6629-442b-981d-ae8195597c8e"
+      },
+      {
+        "name": "71f95ca1-a409-47b0-af02-80a272f776d5",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/71f95ca1-a409-47b0-af02-80a272f776d5"
+      },
+      {
+        "name": "760e99b1-09aa-479b-b90d-c3c581076e0d",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/760e99b1-09aa-479b-b90d-c3c581076e0d"
+      },
+      {
+        "name": "76c2a626-7e3c-4f2f-ad20-b07cd0890302",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/76c2a626-7e3c-4f2f-ad20-b07cd0890302"
+      },
+      {
+        "name": "77175ed4-db9c-4ad3-b8cc-4b328e01d485",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/77175ed4-db9c-4ad3-b8cc-4b328e01d485"
+      },
+      {
+        "name": "7fa63d67-5d84-4f56-b5c4-9b26c4cf9d26",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/7fa63d67-5d84-4f56-b5c4-9b26c4cf9d26"
+      },
+      {
+        "name": "8b4c6295-9adb-4a8f-8ebb-437721114bd3",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/8b4c6295-9adb-4a8f-8ebb-437721114bd3"
+      },
+      {
+        "name": "8bce5a39-959a-4192-a26d-ba88d862f94b",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/8bce5a39-959a-4192-a26d-ba88d862f94b"
+      },
+      {
+        "name": "8c017759-858f-4b9b-91b4-d551bf3388f8",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/8c017759-858f-4b9b-91b4-d551bf3388f8"
+      },
+      {
+        "name": "8c63d22f-b37e-4873-aef6-c6b44bbc36e6",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/8c63d22f-b37e-4873-aef6-c6b44bbc36e6"
+      },
+      {
+        "name": "9593f394-dcac-4d88-a37d-0468f8b0152c",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/9593f394-dcac-4d88-a37d-0468f8b0152c"
+      },
+      {
+        "name": "9685984a-9330-45c8-8d90-5de8068b5861",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/9685984a-9330-45c8-8d90-5de8068b5861"
+      },
+      {
+        "name": "96cb555e-3beb-4678-8731-a2d96bd06507",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/96cb555e-3beb-4678-8731-a2d96bd06507"
+      },
+      {
+        "name": "98f8b556-97cf-4619-9cd7-27d31ae71f4f",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/98f8b556-97cf-4619-9cd7-27d31ae71f4f"
+      },
+      {
+        "name": "9d66046d-9ad7-4fc4-a2a0-5f5a58ee0282",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/9d66046d-9ad7-4fc4-a2a0-5f5a58ee0282"
+      },
+      {
+        "name": "a063e4d1-15cf-4ced-a9d5-8130d629c604",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/a063e4d1-15cf-4ced-a9d5-8130d629c604"
+      },
+      {
+        "name": "a21ff25d-39ee-4d64-a254-ca19a3707b39",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/a21ff25d-39ee-4d64-a254-ca19a3707b39"
+      },
+      {
+        "name": "a370dd7d-ec74-4b7f-ac1d-9294c2bcad5c",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/a370dd7d-ec74-4b7f-ac1d-9294c2bcad5c"
+      },
+      {
+        "name": "a5dfb846-f86e-4b4b-8311-5e783b9f4634",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/a5dfb846-f86e-4b4b-8311-5e783b9f4634"
+      },
+      {
+        "name": "a68348a7-68ea-4c79-800c-7c870eb15f0a",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/a68348a7-68ea-4c79-800c-7c870eb15f0a"
+      },
+      {
+        "name": "a6f1c137-3ac4-41a3-8875-620d3dcba65c",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/a6f1c137-3ac4-41a3-8875-620d3dcba65c"
+      },
+      {
+        "name": "a92d62aa-ba19-428e-9d76-441355db5b20",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/a92d62aa-ba19-428e-9d76-441355db5b20"
+      },
+      {
+        "name": "aa0c930c-11f7-406e-b717-5f138b57e21a",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/aa0c930c-11f7-406e-b717-5f138b57e21a"
+      },
+      {
+        "name": "ab53be54-3300-4964-b943-82feae51d6cd",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/ab53be54-3300-4964-b943-82feae51d6cd"
+      },
+      {
+        "name": "ac85ba57-edc0-4ccb-aa61-ce50f4af7650",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/ac85ba57-edc0-4ccb-aa61-ce50f4af7650"
+      },
+      {
+        "name": "adcc613e-3c79-4478-8f08-d408984265a6",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/adcc613e-3c79-4478-8f08-d408984265a6"
+      },
+      {
+        "name": "b4180fa8-96a9-4211-8059-d03d65eb2f04",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/b4180fa8-96a9-4211-8059-d03d65eb2f04"
+      },
+      {
+        "name": "ba6bc9de-0ace-4ea9-b102-79f024dd3e25",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/ba6bc9de-0ace-4ea9-b102-79f024dd3e25"
+      },
+      {
+        "name": "bc9a6036-2011-42af-bd0f-f1a62a69823a",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/bc9a6036-2011-42af-bd0f-f1a62a69823a"
+      },
+      {
+        "name": "c1e78721-e1ec-4cb8-9a09-4cc95747b587",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/c1e78721-e1ec-4cb8-9a09-4cc95747b587"
+      },
+      {
+        "name": "c678230c-6851-4232-827b-2dc545e975b5",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/c678230c-6851-4232-827b-2dc545e975b5"
+      },
+      {
+        "name": "d31affa7-10fa-4c28-81e3-185e2cae9c51",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/d31affa7-10fa-4c28-81e3-185e2cae9c51"
+      },
+      {
+        "name": "d7568dd6-35d5-4121-b230-c89ab36443e6",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/d7568dd6-35d5-4121-b230-c89ab36443e6"
+      },
+      {
+        "name": "db0ea7ab-5514-474e-a0d5-32a0e6c76a7c",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/db0ea7ab-5514-474e-a0d5-32a0e6c76a7c"
+      },
+      {
+        "name": "ddc7d4a4-054c-4fd2-9755-e96bc744a4ca",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/ddc7d4a4-054c-4fd2-9755-e96bc744a4ca"
+      },
+      {
+        "name": "e1e2bc5b-8835-4d12-ba4b-7e6852071894",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/e1e2bc5b-8835-4d12-ba4b-7e6852071894"
+      },
+      {
+        "name": "e3254a02-d2eb-45b1-a810-eaf6998498bc",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/e3254a02-d2eb-45b1-a810-eaf6998498bc"
+      },
+      {
+        "name": "e6e02fec-0241-40d6-a0f5-7d79d60b9649",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/e6e02fec-0241-40d6-a0f5-7d79d60b9649"
+      },
+      {
+        "name": "ea71891f-e931-41f9-a093-c3442c5683ed",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/ea71891f-e931-41f9-a093-c3442c5683ed"
+      },
+      {
+        "name": "f1ead136-481b-430d-a08f-1b285b75db68",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/f1ead136-481b-430d-a08f-1b285b75db68"
+      },
+      {
+        "name": "f228c287-fce7-44d8-bfbe-c2eb0d7ff024",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/f228c287-fce7-44d8-bfbe-c2eb0d7ff024"
+      },
+      {
+        "name": "f2b53917-8dad-4d75-a1b1-f26887587a76",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/f2b53917-8dad-4d75-a1b1-f26887587a76"
+      },
+      {
+        "name": "f4d842a3-faf6-40dd-8cf6-ee0f756bdb9a",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/f4d842a3-faf6-40dd-8cf6-ee0f756bdb9a"
+      },
+      {
+        "name": "f70735c6-959b-4fda-bb18-e92f89443bd9",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/f70735c6-959b-4fda-bb18-e92f89443bd9"
+      },
+      {
+        "name": "f8e9b625-6561-41bc-9046-291a9d933837",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/f8e9b625-6561-41bc-9046-291a9d933837"
+      },
+      {
+        "name": "f995bc92-74f6-4e69-94b8-bf6e073fa19f",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/f995bc92-74f6-4e69-94b8-bf6e073fa19f"
+      },
+      {
+        "name": "faa5e92a-8de6-49e1-b72e-bd4defebd794",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/faa5e92a-8de6-49e1-b72e-bd4defebd794"
+      },
+      {
+        "name": "fc224a87-54f8-4bed-9c3b-fd2190ec7bd2",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/fc224a87-54f8-4bed-9c3b-fd2190ec7bd2"
+      },
+      {
+        "name": "fe746517-e292-4976-b83b-d1cae168b7da",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "4f22b18a59d93ab4adf5e132c26c23e48979c9b1",
+        "path": "datasets/mmau/fe746517-e292-4976-b83b-d1cae168b7da"
+      }
+    ]
+  }
+]

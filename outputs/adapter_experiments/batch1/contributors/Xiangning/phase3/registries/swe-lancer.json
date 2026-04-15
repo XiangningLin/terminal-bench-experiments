@@ -1,0 +1,117 @@
+[
+  {
+    "name": "adapter-experiments-batch1-phase3",
+    "version": "1.0",
+    "description": "Batch1 coordinated experiments phase3 (10% cumulative minus earlier phases).\n\nProgressive subset derived from batch1_all.lock.json with 10% per source dataset (rounding=ceil, minimum_tasks_per_source=1). Excluding tasks from: registry.lock.json. Selected tasks: aime@1.0:5/60, algotune@1.0:14/154, swe-lancer-diamond@all:18/200, arc_agi_2@1.0:9/100, bfcl_parity@1.0:11/123, bixbench-cli@1.5:4/50, compilebench@1.0:1/15, gpqa-diamond@1.0:18/198, humanevalfix@1.0:15/164, ineqmath@1.0:9/100, labbench@1.0:17/181, mmau@1.0:90/1000, qcircuitbench@1.0:2/28, reasoning-gym-easy@parity:26/288, reasoning-gym-hard@parity:26/288, crustbench@1.0:9/100, sldbench@1.0:0/8, spider2-dbt@1.0:6/64, strongreject@parity:13/150, swebenchpro@1.0:9/100, swesmith@1.0:9/100, mmmlu@parity:13/150, swtbench-verified@1.0:4/50, usaco@2.0:9/100, lawbench@1.0:17/181, kumo@parity:19/212, medagentbench@1.0:9/100, simpleqa@1.0:18/200, gaia@1.0:15/165, swebench-verified@1.0:9/100, aider-polyglot@1.0:20/225, livecodebench@6.0:9/100, codepde@1.0:0/5, replicationbench@1.0:8/90.",
+    "tasks": [
+      {
+        "name": "14268-manager-0",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "HEAD",
+        "path": "datasets/swe-lancer/14268-manager-0"
+      },
+      {
+        "name": "15321",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "HEAD",
+        "path": "datasets/swe-lancer/15321"
+      },
+      {
+        "name": "15815-manager-0",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "HEAD",
+        "path": "datasets/swe-lancer/15815-manager-0"
+      },
+      {
+        "name": "18207-manager-0",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "HEAD",
+        "path": "datasets/swe-lancer/18207-manager-0"
+      },
+      {
+        "name": "18658-manager-0",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "HEAD",
+        "path": "datasets/swe-lancer/18658-manager-0"
+      },
+      {
+        "name": "19135_873",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "HEAD",
+        "path": "datasets/swe-lancer/19135_873"
+      },
+      {
+        "name": "24156-manager-0",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "HEAD",
+        "path": "datasets/swe-lancer/24156-manager-0"
+      },
+      {
+        "name": "25562-manager-0",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "HEAD",
+        "path": "datasets/swe-lancer/25562-manager-0"
+      },
+      {
+        "name": "26048-manager-0",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "HEAD",
+        "path": "datasets/swe-lancer/26048-manager-0"
+      },
+      {
+        "name": "29618_781",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "HEAD",
+        "path": "datasets/swe-lancer/29618_781"
+      },
+      {
+        "name": "39904_611",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "HEAD",
+        "path": "datasets/swe-lancer/39904_611"
+      },
+      {
+        "name": "43022-manager-0",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "HEAD",
+        "path": "datasets/swe-lancer/43022-manager-0"
+      },
+      {
+        "name": "44146_1028",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "HEAD",
+        "path": "datasets/swe-lancer/44146_1028"
+      },
+      {
+        "name": "44213_1005",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "HEAD",
+        "path": "datasets/swe-lancer/44213_1005"
+      },
+      {
+        "name": "46383_999",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "HEAD",
+        "path": "datasets/swe-lancer/46383_999"
+      },
+      {
+        "name": "48694_681",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "HEAD",
+        "path": "datasets/swe-lancer/48694_681"
+      },
+      {
+        "name": "50577_1094",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "HEAD",
+        "path": "datasets/swe-lancer/50577_1094"
+      },
+      {
+        "name": "6883",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "HEAD",
+        "path": "datasets/swe-lancer/6883"
+      }
+    ]
+  }
+]
