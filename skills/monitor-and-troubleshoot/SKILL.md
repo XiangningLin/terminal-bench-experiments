@@ -1,0 +1,266 @@
+---
+name: monitor-and-troubleshoot
+description: Monitor running experiments, check Daytona/Supabase health, diagnose errors, manage concurrency, and handle reruns for Terminal Bench experiments.
+---
+
+# Monitor and Troubleshoot Experiments
+
+Use this skill to monitor running experiments, diagnose issues, and manage reruns.
+
+## Quick Status Check
+
+```bash
+# How many job processes running
+ps aux | grep run_job | grep -v grep | wc -l
+
+# How many sandboxes active (trials without result.json)
+python3 -c "
+import os, glob
+n = sum(1 for jd in glob.glob('jobs/*') if os.path.isdir(jd)
+        for t in os.listdir(jd)
+        if os.path.isdir(os.path.join(jd, t))
+        and not os.path.exists(os.path.join(jd, t, 'result.json')))
+print(f'{n} sandboxes active')
+"
+```
+
+## Check Daytona Errors
+
+```bash
+# Recent errors (last 5 min)
+python3 -c "
+import os, json, glob, time
+from collections import Counter
+now = time.time()
+recent = Counter()
+for jd in glob.glob('jobs/*'):
+    if not os.path.isdir(jd): continue
+    for t in os.listdir(jd):
+        rp = os.path.join(jd, t, 'result.json')
+        if not os.path.exists(rp): continue
+        if os.path.getmtime(rp) < now - 300: continue
+        try:
+            with open(rp) as f: r = json.load(f)
+            exc = r.get('exception_info')
+            if exc: recent[exc.get('exception_type','')] += 1
+            else: recent['OK'] += 1
+        except: pass
+for k, v in recent.most_common():
+    print(f'  {k}: {v}')
+"
+```
+
+### Common Daytona Errors
+
+| Error | Cause | Action |
+|-------|-------|--------|
+| `DaytonaRateLimitError` | Too many sandbox creations (>600/min) | Reduce concurrent jobs, stagger launches |
+| `DaytonaAuthenticationError` | Invalid API key | Check DAYTONA_API_KEY in .env |
+| `DaytonaAuthorizationError` | Key temporarily blocked | Wait or switch to different key |
+| `Sandbox not found` | Stale trial dirs from previous runs | Clean with `-f` flags on rerun |
+
+### When Rate Limited
+
+1. Kill all processes: `kill $(ps aux | grep run_job | grep -v grep | awk '{print $2}')`
+2. Wait 5 minutes for cooldown
+3. Restart with fewer concurrent jobs and staggered launches (every 10-20 seconds)
+4. Daytona limit is **600 sandbox creations per minute** — the danger is failed trials retrying immediately, creating a cascade
+
+## Check Supabase DB Upload Status
+
+```bash
+# Count uploads and DB errors from logs
+python3 -c "
+import glob
+uploads = db_err = 0
+for d in ['/tmp/job-logs-key1-v2', '/tmp/job-logs-key2-fix', '/tmp/job-logs-key3',
+          '/tmp/job-logs-other-benchmarks', '/tmp/job-logs-throttled', '/tmp/job-logs-rerun']:
+    for log in glob.glob(f'{d}/*.log'):
+        with open(log) as f: c = f.read()
+        uploads += c.count('Successfully uploaded')
+        db_err += c.count('Failed to insert trial')
+print(f'Uploads: {uploads}  DB errors: {db_err}')
+"
+```
+
+### DB Error Explanation
+
+- `Failed to insert trial ... RetryError` = trial ran successfully, tar.gz uploaded to Supabase Storage, but database record write failed
+- **Trial data is safe** in local `result.json` — can be re-imported later
+- Caused by Supabase overload when too many concurrent jobs write at the same time
+- Fix: batch re-import after jobs finish (see Rerun section)
+
+## Check Job Progress
+
+```bash
+# Overall progress
+python3 -c "
+import os, json, glob
+ok = fail = prog = 0
+for jd in glob.glob('jobs/*'):
+    if not os.path.isdir(jd): continue
+    for t in os.listdir(jd):
+        tp = os.path.join(jd, t)
+        if not os.path.isdir(tp): continue
+        rp = os.path.join(tp, 'result.json')
+        if os.path.exists(rp):
+            try:
+                with open(rp) as f: r = json.load(f)
+                if r.get('exception_info'): fail += 1
+                else: ok += 1
+            except: fail += 1
+        else: prog += 1
+print(f'OK: {ok}  Failed: {fail}  In progress: {prog}  Total: {ok+fail+prog}')
+"
+
+# Per-benchmark completion
+python3 -c "
+import os, json, glob
+from collections import defaultdict
+stats = defaultdict(lambda: [0,0,0])
+for jd in glob.glob('jobs/*'):
+    if not os.path.isdir(jd): continue
+    bench = os.path.basename(jd).split('__')[0]
+    for t in os.listdir(jd):
+        tp = os.path.join(jd, t)
+        if not os.path.isdir(tp): continue
+        rp = os.path.join(tp, 'result.json')
+        if os.path.exists(rp):
+            try:
+                with open(rp) as f: r = json.load(f)
+                if r.get('exception_info'): stats[bench][1] += 1
+                else: stats[bench][0] += 1
+            except: stats[bench][1] += 1
+        else: stats[bench][2] += 1
+for b in sorted(stats):
+    ok, fail, prog = stats[b]
+    print(f'{b:<18} ok={ok:>5} fail={fail:>5} prog={prog:>4}')
+"
+```
+
+## Check System Resources
+
+```bash
+# Memory
+top -l 1 -s 0 | grep PhysMem
+
+# Disk
+du -sh jobs/ && df -h / | tail -1
+
+# Per-process memory
+ps aux | grep run_job | grep -v grep | awk '{sum += $6} END {printf "run_job total: %.1fGB (%d processes)\n", sum/1024/1024, NR}'
+
+# Top memory consumers (non-job)
+ps aux | sort -k6 -rn | grep -v "run_job\|python3" | head -10 | awk '{printf "%6dMB %s\n", $6/1024, $11}'
+```
+
+### Memory Guidelines
+
+- Each run_job process uses ~150-300 MB
+- 60 processes ≈ 12-18 GB
+- macOS compressor helps but >80 processes will be tight on 32GB machine
+- Kill Chrome/WeChat to free 2-6 GB
+
+## Concurrency Guidelines
+
+### Daytona Rate Limit: 600 sandbox creations / minute
+
+| Scenario | Safe Concurrent |
+|----------|----------------|
+| Stable (trials take 10+ min) | 60-80 jobs × 5 concurrent = 300-400 sandbox |
+| With failures (fast retry) | 30-40 jobs × 5 concurrent = 150-200 sandbox |
+| After rate limit hit | Wait 5 min, restart with 20 jobs |
+
+### Three-Key Distribution
+
+Distribute jobs across 3 Daytona API keys by agent type to avoid per-key rate limits:
+
+```bash
+if [[ "$job_name" == *claude-code* ]]; then
+    export DAYTONA_API_KEY="$DAYTONA_API_KEY_1"
+elif [[ "$job_name" == *codex* ]] || [[ "$job_name" == *gemini-cli* ]]; then
+    export DAYTONA_API_KEY="$DAYTONA_API_KEY_2"
+else
+    export DAYTONA_API_KEY="$DAYTONA_API_KEY_3"
+fi
+```
+
+### Staggered Launch
+
+Always launch jobs with delays to avoid burst creation:
+
+```bash
+# 10-20 seconds between launches
+for config in configs/*.yaml; do
+    nohup .venv/bin/python3 -u scripts/run_job.py -c "$config" &
+    sleep 20
+done
+```
+
+## Rerun Failed Trials
+
+```bash
+# Rerun with error filtering (cleans failed trials, reruns them)
+.venv/bin/python3 -u scripts/run_job.py -c <config.yaml> \
+    -f DaytonaRateLimitError \
+    -f DaytonaError \
+    -f DaytonaAuthorizationError \
+    -f DaytonaAuthenticationError \
+    -f NonZeroAgentExitCodeError \
+    -f RuntimeError \
+    -f CancelledError \
+    -f APIConnectionError
+```
+
+**How `-f` works** (from `run_job.py` line 439-469):
+1. Reads `result.json` in each trial directory
+2. If `exception_info.exception_type` matches any `-f` type → deletes that trial directory
+3. Harbor then treats it as a new trial and reruns it
+4. Successful trials (no exception) are kept and skipped
+5. Requires `config.json` in the job directory to exist
+
+**Important**: when cleaning disk space, keep `result.json` AND `config.json` per job — both are needed for rerun.
+
+## Batch Re-import to Supabase
+
+After jobs finish, re-import trials that had DB write failures:
+
+```python
+# Run from project root with .venv
+import os, json, glob, shutil
+from decimal import Decimal
+from pathlib import Path
+from supabase import create_client
+from harbor.models.trial.result import TrialResult
+
+client = create_client(os.environ['SUPABASE_URL'], os.environ['SUPABASE_SECRET_KEY'])
+
+for job_dir in sorted(glob.glob('jobs/*')):
+    for trial_name in os.listdir(job_dir):
+        rp = os.path.join(job_dir, trial_name, 'result.json')
+        if not os.path.exists(rp): continue
+        result = TrialResult.model_validate_json(Path(rp).read_text())
+        if result.exception_info: continue
+        
+        # Check if already in DB
+        existing = client.table('trial').select('id').eq('id', str(result.id)).execute()
+        if existing.data: continue
+        
+        # Insert trial, agent, model...
+```
+
+## Disk Cleanup (Safe)
+
+For completed trials already uploaded to Supabase Storage, remove large files but keep `result.json` and job-level `config.json`:
+
+```python
+import os, shutil
+for trial_dir in trial_dirs:
+    for item in os.listdir(trial_dir):
+        if item in ('result.json', 'config.json'): continue
+        path = os.path.join(trial_dir, item)
+        if os.path.isdir(path): shutil.rmtree(path)
+        else: os.remove(path)
+```
+
+**Do NOT delete**: `result.json` (needed for rerun logic) and job-level `config.json` (needed for `-f` filter).
