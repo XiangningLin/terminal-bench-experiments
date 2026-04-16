@@ -249,6 +249,27 @@ for job_dir in sorted(glob.glob('jobs/*')):
         # Insert trial, agent, model...
 ```
 
+## Check Supabase Completion
+
+Before rerunning jobs, ALWAYS check Supabase first — results may already exist from previous runs (especially when `config.json` was deleted, causing duplicate job_ids).
+
+```bash
+# Check all jobs
+.venv/bin/python3 scripts/check_supabase_completion.py
+
+# Check specific phase
+.venv/bin/python3 scripts/check_supabase_completion.py --phase phase2
+
+# Check specific benchmark
+.venv/bin/python3 scripts/check_supabase_completion.py --benchmark mmau
+```
+
+A job is "DONE" when every task has >= 3 successful trials (with non-null reward) across ALL job_ids in Supabase. This handles duplicate job_ids caused by deleting `config.json` during reruns.
+
+### Important: Never delete config.json
+
+When rerunning with `-f` flags, **do NOT delete `config.json`** from the job directory. Deleting it causes harbor to create a new job_id and re-run ALL trials from scratch, including already successful ones. The `-f` flag alone handles cleaning failed trials.
+
 ## Disk Cleanup (Safe)
 
 For completed trials already uploaded to Supabase Storage, remove large files but keep `result.json` and job-level `config.json`:
