@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 from harbor.cli.utils import run_async
 from harbor.models.dataset_item import DownloadedDatasetItem
 from harbor.models.job.config import DatasetConfig, JobConfig
+LocalDatasetConfig = DatasetConfig
 from harbor.models.registry import DatasetSpec, RegistryTaskId
 from harbor.models.task.task import Task
 from harbor.models.trial.result import TrialResult
