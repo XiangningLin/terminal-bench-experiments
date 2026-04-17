@@ -1,6 +1,6 @@
 agents:
 - env:
-    OPENAI_API_KEY: sk-qaX617DzeVT3UESg47dV4DNF3qdcee4aJ1BFPodVCTp8HDWC
+    OPENAI_API_KEY: sk-W3IUGUVAgHlxPhffs4AaqAO9XzpmHSOQma7f1CRdAgpHBpBc
     OPENAI_BASE_URL: http://pp-api-ec82a10d0c5d226c.elb.us-west-2.amazonaws.com:3000/v1
   kwargs:
     version: 0.14.5
