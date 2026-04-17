@@ -1,0 +1,43 @@
+agents:
+- env:
+    ANTHROPIC_AUTH_TOKEN: sk-f64c2a4a28734cf3812cbcd6a57119eb
+    ANTHROPIC_BASE_URL: https://api.deepseek.com/anthropic
+    ANTHROPIC_DEFAULT_HAIKU_MODEL: deepseek-chat
+    ANTHROPIC_DEFAULT_OPUS_MODEL: deepseek-chat
+    ANTHROPIC_DEFAULT_SONNET_MODEL: deepseek-chat
+    ANTHROPIC_MODEL: deepseek-chat
+    API_TIMEOUT_MS: '600000'
+    CLAUDE_CODE_SUBAGENT_MODEL: deepseek-chat
+  kwargs:
+    version: 2.1.81
+  model_name: anthropic/deepseek-chat
+  name: claude-code
+datasets:
+- name: adapter-experiments-batch1-phase3
+  registry:
+    name: local
+    path: outputs/adapter_experiments/batch1/contributors/Xiangning/phase3/registries/mmau.json
+  version: '1.0'
+environment:
+  delete: true
+  force_build: false
+  type: daytona
+job_name: mmau__claude-code__deepseek-chat__batch1__phase3
+jobs_dir: jobs
+n_attempts: 5
+orchestrator:
+  n_concurrent_trials: 32
+  quiet: false
+  retry:
+    exclude_exceptions:
+    - BadRequestError
+    - RateLimitError
+    - AgentTimeoutError
+    - VerifierTimeoutError
+    - RewardFileNotFoundError
+    max_retries: 3
+    max_wait_sec: 60.0
+    min_wait_sec: 1.0
+    wait_multiplier: 1.0
+  type: local
+timeout_multiplier: 1.0

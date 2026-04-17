@@ -1,0 +1,37 @@
+agents:
+- env:
+    OPENAI_API_KEY: sk-qaX617DzeVT3UESg47dV4DNF3qdcee4aJ1BFPodVCTp8HDWC
+    OPENAI_BASE_URL: http://pp-api-ec82a10d0c5d226c.elb.us-west-2.amazonaws.com:3000/v1
+  kwargs:
+    version: 0.14.5
+  model_name: qwen3-max
+  name: qwen-coder
+datasets:
+- name: adapter-experiments-batch1-phase3
+  registry:
+    name: local
+    path: outputs/adapter_experiments/batch1/contributors/Xiangning/phase3/registries/gpqa-diamond.json
+  version: '1.0'
+environment:
+  delete: true
+  force_build: false
+  type: daytona
+job_name: gpqa-diamond__qwen-coder__qwen3-max__batch1__phase3
+jobs_dir: jobs
+n_attempts: 5
+orchestrator:
+  n_concurrent_trials: 32
+  quiet: false
+  retry:
+    exclude_exceptions:
+    - BadRequestError
+    - RateLimitError
+    - AgentTimeoutError
+    - VerifierTimeoutError
+    - RewardFileNotFoundError
+    max_retries: 3
+    max_wait_sec: 60.0
+    min_wait_sec: 1.0
+    wait_multiplier: 1.0
+  type: local
+timeout_multiplier: 1.0

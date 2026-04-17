@@ -27,7 +27,7 @@ agents:
   kwargs:
     version: 2.1.81
   env:
-    ANTHROPIC_AUTH_TOKEN: ANTHROPIC_AUTH_TOKEN_PLACEHOLDER
+    ANTHROPIC_AUTH_TOKEN: sk-c6r74amebkzn8duc4iubdr3hoky35mfgzolusr5inixfr19a
     ANTHROPIC_BASE_URL: https://api.xiaomimimo.com/anthropic
     ANTHROPIC_MODEL: mimo-v2-pro
     ANTHROPIC_DEFAULT_SONNET_MODEL: mimo-v2-pro
