@@ -1,28 +1,32 @@
-# Remaining Jobs - Supabase Verified
+# Remaining Jobs
 
-Generated: 2026-04-17 from `scripts/check_supabase_completion.py`
+Generated: 2026-04-17
 
-Total: 127 DONE / 70 PARTIAL / 22 NEED = 219 jobs
+Running on machine 1: 16 swe-lancer phase4 jobs
+Need to run: 70 jobs (46 qwen new + 24 rerun)
 
-## Already running on machine 1 (swe-lancer phase4)
-
-16 swe-lancer phase4 jobs are running. Do NOT run these on machine 2.
-
-## For machine 2 (92 incomplete jobs, skip mimo/mmau-phase4)
-
-### Setup
+## Setup (new machine)
 
 ```bash
 git clone git@github.com:XiangningLin/terminal-bench-experiments.git
 cd terminal-bench-experiments
 git checkout adapter0312
+ln -s /path/to/harbor ../harbor  # harbor repo must be at ../harbor
 uv sync
-cp /path/to/.env .  # needs DAYTONA_API_KEY, ANTHROPIC_API_KEY, model keys
+
+# Copy .env with all keys
+cp /path/to/.env .
+
+# Verify
+.venv/bin/python3 -c "from harbor.job import Job; print('OK')"
 ```
 
-### Run command
+## How to run a single job
 
 ```bash
+source .env
+export DAYTONA_API_KEY="$DAYTONA_API_KEY_1"  # or _2 or _3
+
 .venv/bin/python3 -u scripts/run_job.py \
   -c <config_path> \
   -f DaytonaRateLimitError -f DaytonaError -f DaytonaAuthorizationError \
@@ -30,105 +34,173 @@ cp /path/to/.env .  # needs DAYTONA_API_KEY, ANTHROPIC_API_KEY, model keys
   -f RuntimeError -f CancelledError -f APIConnectionError
 ```
 
-### Phase 2 (5 PARTIAL)
+## Check status
 
-| Config | Status |
-|--------|--------|
-| `phase2/gpqa-diamond__claude-code__claude-sonnet-4-6.yaml` | 2/10 |
-| `phase2/gpqa-diamond__gemini-cli__gemini-3-flash-preview.yaml` | 2/10 |
-| `phase2/labbench__terminus-2__kimi-k2.5.yaml` | 2/10 |
-| `phase2/labbench__terminus-2__mimo-v2-pro.yaml` | 2/10 (mimo - skip?) |
-| `phase2/labbench__terminus-2__minimax-m2.5.yaml` | 2/10 |
+```bash
+.venv/bin/python3 scripts/status.py              # overall status
+.venv/bin/python3 scripts/check_supabase_completion.py  # Supabase check
+.venv/bin/python3 scripts/reimport_to_supabase.py       # upload missing results
+bash scripts/machine_capacity.sh                         # machine capacity
+```
 
-### Phase 3 (11 PARTIAL)
+---
 
-| Config | Status |
-|--------|--------|
-| `phase3/arc-agi-2__gemini-cli__gemini-3.1-pro-preview.yaml` | 9/45 |
-| `phase3/arc-agi-2__terminus-2__gpt-5.4.yaml` | 9/45 |
-| `phase3/gpqa-diamond__claude-code__minimax-m2.5.yaml` | 18/90 |
-| `phase3/gpqa-diamond__codex__gpt-5-nano.yaml` | 18/90 |
-| `phase3/gpqa-diamond__terminus-2__deepseek-reasoner.yaml` | 18/90 |
-| `phase3/gpqa-diamond__terminus-2__gemini-3-flash-preview.yaml` | 18/90 |
-| `phase3/gpqa-diamond__terminus-2__gemini-3.1-pro-preview.yaml` | 18/90 |
-| `phase3/humanevalfix__terminus-2__minimax-m2.5.yaml` | 15/75 |
-| `phase3/ineqmath__terminus-2__mimo-v2-pro.yaml` | 8/9 (mimo - skip?) |
-| `phase3/labbench__claude-code__deepseek-chat.yaml` | 17/90 |
-| `phase3/labbench__terminus-2__deepseek-reasoner.yaml` | 17/90 |
+## Qwen Jobs (46 new, never run)
 
-### Phase 4 - Small/Medium (not swe-lancer, not mmau)
+### Qwen Phase2 (12 jobs, small ~5-50 trials each)
 
-| Config | Status |
-|--------|--------|
-| `phase4/arc-agi-2__terminus-2__deepseek-reasoner.yaml` | 90/450 |
-| `phase4/compilebench__gemini-cli__gemini-3-flash-preview.yaml` | 11/13 |
-| `phase4/compilebench__gemini-cli__gemini-3.1-pro-preview.yaml` | 11/13 |
-| `phase4/compilebench__terminus-2__gpt-5-mini.yaml` | 12/13 |
-| `phase4/compilebench__terminus-2__gpt-5-nano.yaml` | 9/13 |
-| `phase4/compilebench__terminus-2__mimo-v2-pro.yaml` | 0/13 (mimo - skip?) |
-| `phase4/compilebench__terminus-2__minimax-m2.5.yaml` | 5/13 |
-| `phase4/gpqa-diamond__terminus-2__gemini-3-flash-preview.yaml` | 178/890 |
-| `phase4/gpqa-diamond__terminus-2__mimo-v2-pro.yaml` | 37/890 (mimo - skip?) |
-| `phase4/ineqmath__claude-code__deepseek-chat.yaml` | 38/90 |
-| `phase4/ineqmath__claude-code__kimi-k2.5.yaml` | 36/90 |
-| `phase4/ineqmath__claude-code__mimo-v2-pro.yaml` | 12/90 (mimo - skip?) |
-| `phase4/ineqmath__claude-code__minimax-m2.5.yaml` | 64/90 |
-| `phase4/ineqmath__codex__gpt-5-mini.yaml` | 34/90 |
-| `phase4/ineqmath__codex__gpt-5-nano.yaml` | 54/90 |
-| `phase4/ineqmath__codex__gpt-5.4.yaml` | 30/90 |
-| `phase4/ineqmath__gemini-cli__gemini-3-flash-preview.yaml` | 42/90 |
-| `phase4/ineqmath__gemini-cli__gemini-3.1-pro-preview.yaml` | 28/90 |
-| `phase4/ineqmath__terminus-2__deepseek-reasoner.yaml` | 55/90 |
-| `phase4/ineqmath__terminus-2__gemini-3-flash-preview.yaml` | 35/90 |
-| `phase4/ineqmath__terminus-2__gemini-3.1-pro-preview.yaml` | 48/90 |
-| `phase4/ineqmath__terminus-2__gpt-5-mini.yaml` | 85/90 |
-| `phase4/ineqmath__terminus-2__gpt-5-nano.yaml` | 76/90 |
-| `phase4/ineqmath__terminus-2__gpt-5.4.yaml` | 36/90 |
-| `phase4/ineqmath__terminus-2__kimi-k2.5.yaml` | 22/90 |
-| `phase4/ineqmath__terminus-2__mimo-v2-pro.yaml` | 12/90 (mimo - skip?) |
-| `phase4/ineqmath__terminus-2__minimax-m2.5.yaml` | 89/90 |
-| `phase4/labbench__claude-code__deepseek-chat.yaml` | 162/810 |
-| `phase4/labbench__claude-code__kimi-k2.5.yaml` | 162/810 |
-| `phase4/labbench__terminus-2__gpt-5-mini.yaml` | 162/810 |
-| `phase4/qcircuitbench__claude-code__deepseek-chat.yaml` | 24/25 |
-| `phase4/qcircuitbench__codex__gpt-5.4.yaml` | 23/25 |
-| `phase4/qcircuitbench__gemini-cli__gemini-3-flash-preview.yaml` | 24/25 |
-| `phase4/qcircuitbench__gemini-cli__gemini-3.1-pro-preview.yaml` | 23/25 |
-| `phase4/qcircuitbench__terminus-2__deepseek-reasoner.yaml` | 24/25 |
-| `phase4/qcircuitbench__terminus-2__gemini-3-flash-preview.yaml` | 24/25 |
-| `phase4/qcircuitbench__terminus-2__gemini-3.1-pro-preview.yaml` | 23/25 |
-| `phase4/qcircuitbench__terminus-2__gpt-5-mini.yaml` | 24/25 |
-| `phase4/qcircuitbench__terminus-2__gpt-5-nano.yaml` | 24/25 |
-| `phase4/qcircuitbench__terminus-2__gpt-5.4.yaml` | 24/25 |
-| `phase4/qcircuitbench__terminus-2__mimo-v2-pro.yaml` | 0/25 (mimo - skip?) |
+Config paths relative to `outputs/adapter_experiments/batch1/contributors/Xiangning/`
 
-### Phase 4 - SWE-Lancer (running on machine 1, but can split)
+```
+phase2/gpqa-diamond__qwen-coder__qwen3-max.yaml
+phase2/gpqa-diamond__terminus-2__qwen3-max.yaml
+phase2/ineqmath__qwen-coder__qwen3-max.yaml
+phase2/ineqmath__terminus-2__qwen3-max.yaml
+phase2/labbench__qwen-coder__qwen3-max.yaml
+phase2/labbench__terminus-2__qwen3-max.yaml
+phase2/mmau__qwen-coder__qwen3-max.yaml
+phase2/mmau__terminus-2__qwen3-max.yaml
+phase2/qcircuitbench__qwen-coder__qwen3-max.yaml
+phase2/qcircuitbench__terminus-2__qwen3-max.yaml
+phase2/swe-lancer__qwen-coder__qwen3-max.yaml
+phase2/swe-lancer__terminus-2__qwen3-max.yaml
+```
 
-| Config | Status |
-|--------|--------|
-| `phase4/swe-lancer__claude-code__deepseek-chat.yaml` | 93/180 |
-| `phase4/swe-lancer__claude-code__kimi-k2.5.yaml` | 98/180 |
-| `phase4/swe-lancer__claude-code__mimo-v2-pro.yaml` | 0/180 (mimo) |
-| `phase4/swe-lancer__claude-code__minimax-m2.5.yaml` | 26/180 |
-| `phase4/swe-lancer__codex__gpt-5-nano.yaml` | 151/180 |
-| `phase4/swe-lancer__codex__gpt-5.4.yaml` | 6/180 |
-| `phase4/swe-lancer__gemini-cli__gemini-3-flash-preview.yaml` | 68/180 |
-| `phase4/swe-lancer__gemini-cli__gemini-3.1-pro-preview.yaml` | 0/180 |
-| `phase4/swe-lancer__terminus-2__deepseek-reasoner.yaml` | 7/180 |
-| `phase4/swe-lancer__terminus-2__gemini-3-flash-preview.yaml` | 4/180 |
-| `phase4/swe-lancer__terminus-2__gemini-3.1-pro-preview.yaml` | 162/180 |
-| `phase4/swe-lancer__terminus-2__gpt-5-mini.yaml` | 4/180 |
-| `phase4/swe-lancer__terminus-2__gpt-5-nano.yaml` | 0/180 |
-| `phase4/swe-lancer__terminus-2__gpt-5.4.yaml` | 0/180 |
-| `phase4/swe-lancer__terminus-2__kimi-k2.5.yaml` | 0/180 |
-| `phase4/swe-lancer__terminus-2__mimo-v2-pro.yaml` | 0/180 (mimo) |
-| `phase4/swe-lancer__terminus-2__minimax-m2.5.yaml` | 0/180 |
+### Qwen Phase3 (18 jobs, medium ~5-450 trials each)
+
+```
+phase3/aime__qwen-coder__qwen3-max.yaml
+phase3/aime__terminus-2__qwen3-max.yaml
+phase3/arc-agi-2__qwen-coder__qwen3-max.yaml
+phase3/arc-agi-2__terminus-2__qwen3-max.yaml
+phase3/compilebench__qwen-coder__qwen3-max.yaml
+phase3/compilebench__terminus-2__qwen3-max.yaml
+phase3/gpqa-diamond__qwen-coder__qwen3-max.yaml
+phase3/gpqa-diamond__terminus-2__qwen3-max.yaml
+phase3/humanevalfix__qwen-coder__qwen3-max.yaml
+phase3/humanevalfix__terminus-2__qwen3-max.yaml
+phase3/ineqmath__qwen-coder__qwen3-max.yaml
+phase3/ineqmath__terminus-2__qwen3-max.yaml
+phase3/labbench__qwen-coder__qwen3-max.yaml
+phase3/labbench__terminus-2__qwen3-max.yaml
+phase3/mmau__qwen-coder__qwen3-max.yaml
+phase3/mmau__terminus-2__qwen3-max.yaml
+phase3/swe-lancer__qwen-coder__qwen3-max.yaml
+phase3/swe-lancer__terminus-2__qwen3-max.yaml
+```
+
+### Qwen Phase4 (16 jobs, large ~25-900 trials each)
+
+```
+phase4/aime__qwen-coder__qwen3-max.yaml
+phase4/aime__terminus-2__qwen3-max.yaml
+phase4/arc-agi-2__qwen-coder__qwen3-max.yaml
+phase4/arc-agi-2__terminus-2__qwen3-max.yaml
+phase4/compilebench__qwen-coder__qwen3-max.yaml
+phase4/compilebench__terminus-2__qwen3-max.yaml
+phase4/gpqa-diamond__qwen-coder__qwen3-max.yaml
+phase4/gpqa-diamond__terminus-2__qwen3-max.yaml
+phase4/ineqmath__qwen-coder__qwen3-max.yaml
+phase4/ineqmath__terminus-2__qwen3-max.yaml
+phase4/labbench__qwen-coder__qwen3-max.yaml
+phase4/labbench__terminus-2__qwen3-max.yaml
+phase4/qcircuitbench__qwen-coder__qwen3-max.yaml
+phase4/qcircuitbench__terminus-2__qwen3-max.yaml
+phase4/swe-lancer__qwen-coder__qwen3-max.yaml
+phase4/swe-lancer__terminus-2__qwen3-max.yaml
+```
+
+---
+
+## Other Incomplete Jobs (24, need rerun)
+
+### Phase2 (4 jobs)
+
+```
+phase2/labbench__terminus-2__kimi-k2.5.yaml          # ok=0/3
+phase2/labbench__terminus-2__minimax-m2.5.yaml        # ok=0/3
+phase2/qcircuitbench__claude-code__claude-sonnet-4-6.yaml  # ok=0/3
+phase2/qcircuitbench__terminus-2__deepseek-reasoner.yaml   # ok=0/3
+```
+
+### Phase3 - compilebench (12 jobs)
+
+```
+phase3/compilebench__claude-code__kimi-k2.5.yaml      # ok=5/10
+phase3/compilebench__claude-code__minimax-m2.5.yaml    # ok=5/10
+phase3/compilebench__codex__gpt-5-nano.yaml            # ok=5/10
+phase3/compilebench__codex__gpt-5.4.yaml               # ok=5/10
+phase3/compilebench__gemini-cli__gemini-3.1-pro-preview.yaml  # ok=5/10
+phase3/compilebench__terminus-2__deepseek-reasoner.yaml       # ok=5/10
+phase3/compilebench__terminus-2__gemini-3.1-pro-preview.yaml  # ok=5/10
+phase3/compilebench__terminus-2__gpt-5-mini.yaml       # ok=5/10
+phase3/compilebench__terminus-2__gpt-5-nano.yaml       # ok=7/10
+phase3/compilebench__terminus-2__gpt-5.4.yaml          # ok=5/10
+phase3/compilebench__terminus-2__kimi-k2.5.yaml        # ok=5/10
+phase3/compilebench__terminus-2__minimax-m2.5.yaml     # ok=5/10
+```
+
+### Phase3 - labbench (2 jobs)
+
+```
+phase3/labbench__claude-code__deepseek-chat.yaml      # ok=3/10
+phase3/labbench__terminus-2__deepseek-reasoner.yaml    # ok=0/10
+```
+
+### Phase4 (6 jobs)
+
+```
+phase4/arc-agi-2__terminus-2__deepseek-reasoner.yaml   # ok=3/50
+phase4/compilebench__terminus-2__gpt-5-nano.yaml       # ok=33/50
+phase4/compilebench__terminus-2__minimax-m2.5.yaml     # ok=28/50
+phase4/labbench__claude-code__deepseek-chat.yaml       # ok=20/50
+phase4/qcircuitbench__terminus-2__deepseek-reasoner.yaml  # ok=29/50
+phase4/qcircuitbench__terminus-2__gpt-5-nano.yaml      # ok=26/50
+```
+
+---
+
+## Batch run script
+
+Run all jobs with staggered launch (recommended):
+
+```bash
+source .env
+
+FILTER="-f DaytonaRateLimitError -f DaytonaError -f DaytonaAuthorizationError -f DaytonaAuthenticationError -f NonZeroAgentExitCodeError -f RuntimeError -f CancelledError -f APIConnectionError"
+LOG_DIR="/tmp/job-logs"
+mkdir -p "$LOG_DIR"
+
+CONFIG_BASE="outputs/adapter_experiments/batch1/contributors/Xiangning"
+
+for config in "$CONFIG_BASE"/phase2/*qwen*.yaml \
+              "$CONFIG_BASE"/phase3/*qwen*.yaml \
+              "$CONFIG_BASE"/phase4/*qwen*.yaml; do
+  job_name=$(grep "^job_name:" "$config" | awk '{print $2}')
+
+  # Assign Daytona key by agent
+  if [[ "$job_name" == *claude-code* ]]; then
+    export DAYTONA_API_KEY="$DAYTONA_API_KEY_1"
+  elif [[ "$job_name" == *codex* ]] || [[ "$job_name" == *gemini-cli* ]]; then
+    export DAYTONA_API_KEY="$DAYTONA_API_KEY_2"
+  else
+    export DAYTONA_API_KEY="$DAYTONA_API_KEY_3"
+  fi
+
+  nohup .venv/bin/python3 -u scripts/run_job.py -c "$config" $FILTER \
+    > "$LOG_DIR/${job_name}.log" 2>&1 &
+  echo "START: $job_name"
+  sleep 15  # stagger to avoid Daytona rate limit (600 creations/min)
+done
+
+echo "Check: ps aux | grep run_job | grep -v grep | wc -l"
+```
 
 ## Notes
 
-- All config paths are relative to `outputs/adapter_experiments/batch1/contributors/Xiangning/`
-- Skip `mimo` jobs (key has no funds)
+- Skip `glm-5` and `mimo` jobs (keys unavailable)
 - Skip `mmau phase4` (postponed, too large)
-- Skip `glm-5` jobs (key unavailable)
-- After running, use `scripts/reimport_to_supabase.py` to ensure all results are in DB
-- Use `scripts/check_supabase_completion.py` to verify
+- Daytona limit: 600 sandbox creations/minute - stagger launches
+- After running: `scripts/reimport_to_supabase.py` to upload results
+- Check completion: `scripts/check_supabase_completion.py`
+- Machine capacity: `bash scripts/machine_capacity.sh`
