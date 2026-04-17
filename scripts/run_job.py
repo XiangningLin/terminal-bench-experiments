@@ -304,6 +304,24 @@ async def create_job_compat(config: JobConfig) -> Job:
         return Job(config=config)
 
 
+async def create_job_compat(config: JobConfig) -> Job:
+    """
+    Create a Harbor job across old and new Harbor versions.
+
+    Harbor >= 2026-03-27 requires ``await Job.create(config)`` because job
+    initialization now performs async dataset and task resolution. Older Harbor
+    versions still support direct instantiation.
+    """
+    create = getattr(Job, "create", None)
+    if callable(create):
+        maybe_job = create(config)
+        if inspect.isawaitable(maybe_job):
+            return await maybe_job
+        return maybe_job
+
+    return Job(config=config)
+
+
 async def upload_trial_to_storage(result: TrialResult) -> str | None:
     """
     Upload trial directory as a tar.gz archive to Supabase storage and return public URL.
