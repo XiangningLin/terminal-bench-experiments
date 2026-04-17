@@ -270,6 +270,45 @@ A job is "DONE" when every task has >= 3 successful trials (with non-null reward
 
 When rerunning with `-f` flags, **do NOT delete `config.json`** from the job directory. Deleting it causes harbor to create a new job_id and re-run ALL trials from scratch, including already successful ones. The `-f` flag alone handles cleaning failed trials.
 
+## Supabase Batch Re-import (with task registration)
+
+When `run_job.py` has DB errors, trials succeed locally but don't get written to Supabase. Use this to batch re-import:
+
+```bash
+source .env
+.venv/bin/python3 scripts/reimport_to_supabase.py
+```
+
+The script does two steps:
+1. **Register missing tasks** — some tasks may not be in the `task` table yet (foreign key constraint). It reads `config.json` from each trial to get `path`, `git_url`, etc.
+2. **Import trials** — checks each successful trial by ID, skips if already in DB, inserts if missing.
+
+### Common Supabase Errors
+
+| Error | Cause | Fix |
+|-------|-------|-----|
+| `foreign key constraint "trial_task_checksum_fkey"` | Task not in `task` table | Run task registration first (Step 1 of reimport script) |
+| `null value in column "agent_timeout_sec"` | Missing required fields when inserting task | Include `agent_timeout_sec`, `verifier_timeout_sec`, `path` |
+| `null value in column "path"` | Missing path field | Get path from trial's `config.json` |
+| `UUID is not JSON serializable` | UUID objects not serialized | Use `json.dumps(data, default=str)` or `str(uuid)` |
+| `502 Bad Gateway` | Supabase overloaded | Wait and retry later, reduce concurrent writes |
+
+### Key Fields for Task Registration
+
+The `task` table requires these non-null fields:
+- `checksum` (from `result.task_checksum`)
+- `name` (from `result.task_name`)
+- `instruction` (can be empty string)
+- `agent_timeout_sec` (default: 1800)
+- `verifier_timeout_sec` (default: 600)
+- `path` (from trial's `config.json` → `task.path`)
+
+### Config Mismatch Error
+
+`ValueError: Job directory already exists and cannot be resumed with a different config.`
+
+This happens when `config.json` in the job directory doesn't match the config you're running with (e.g., different `n_concurrent_trials`). Fix: remove `config.json` from the job directory. But be aware this creates a new job_id and may cause duplicate trials.
+
 ## Disk Cleanup (Safe)
 
 For completed trials already uploaded to Supabase Storage, remove large files but keep `result.json` and job-level `config.json`:
