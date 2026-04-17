@@ -1,7 +1,8 @@
 agents:
 - kwargs:
     api_base: http://pp-api-ec82a10d0c5d226c.elb.us-west-2.amazonaws.com:3000/v1
-    api_key: sk-qaX617DzeVT3UESg47dV4DNF3qdcee4aJ1BFPodVCTp8HDWC
+    llm_kwargs:
+      api_key: sk-MNGcqk6AbjuKKWXv6qp4ObIm0HpYYzBUSC2vu0GqJtouHZSG
   model_name: openai/qwen3-max
   name: terminus-2
 datasets:
