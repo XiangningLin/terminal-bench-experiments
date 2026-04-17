@@ -42,10 +42,13 @@ EXPECTED_TASKS = {
 }
 
 
-def check_completion(client, job_name, expected_tasks):
+def check_completion(client, job_name, expected_tasks, username=None):
     """Check how many tasks have >= 3 successful trials in Supabase."""
     try:
-        jobs = client.table("job").select("id").eq("job_name", job_name).execute()
+        query = client.table("job").select("id").eq("job_name", job_name)
+        if username:
+            query = query.eq("username", username)
+        jobs = query.execute()
     except Exception as e:
         return 0, f"QUERY_FAIL: {e}"
 
@@ -90,6 +93,11 @@ def main():
         default="outputs/adapter_experiments/batch1/contributors/Xiangning",
         help="Path to config directory",
     )
+    parser.add_argument(
+        "--username",
+        default="linxiangning",
+        help="Filter jobs by username in Supabase",
+    )
     args = parser.parse_args()
 
     client = create_client(
@@ -121,7 +129,7 @@ def main():
 
     results = []
     for i, (jn, bench, phase, exp) in enumerate(configs):
-        tasks_with_3, status = check_completion(client, jn, exp)
+        tasks_with_3, status = check_completion(client, jn, exp, username=args.username)
         results.append((jn, phase, tasks_with_3, exp, status))
 
         if (i + 1) % 20 == 0:
