@@ -13,14 +13,26 @@ Use this skill to monitor running experiments, diagnose issues, and manage rerun
 # How many job processes running
 ps aux | grep run_job | grep -v grep | wc -l
 
-# How many sandboxes active (trials without result.json)
+# How many sandboxes active (only in RUNNING jobs, not stale dirs)
 python3 -c "
-import os, glob
-n = sum(1 for jd in glob.glob('jobs/*') if os.path.isdir(jd)
-        for t in os.listdir(jd)
-        if os.path.isdir(os.path.join(jd, t))
-        and not os.path.exists(os.path.join(jd, t, 'result.json')))
-print(f'{n} sandboxes active')
+import os, glob, subprocess
+running = set()
+ps = subprocess.run(['ps', 'aux'], capture_output=True, text=True)
+for line in ps.stdout.split('\n'):
+    if 'run_job' in line and 'grep' not in line:
+        for part in line.split():
+            if 'Xiangning' in part or 'job-configs' in part:
+                running.add(part.split('/')[-1].replace('.yaml',''))
+active = 0
+for jd in glob.glob('jobs/*'):
+    if not os.path.isdir(jd): continue
+    name = os.path.basename(jd)
+    if not any(name in r for r in running): continue
+    for t in os.listdir(jd):
+        tp = os.path.join(jd, t)
+        if os.path.isdir(tp) and not os.path.exists(os.path.join(tp, 'result.json')):
+            active += 1
+print(f'{active} active sandboxes ({len(running)} processes)')
 "
 ```
 
