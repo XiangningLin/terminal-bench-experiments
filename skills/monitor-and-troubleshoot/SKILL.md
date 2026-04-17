@@ -36,6 +36,41 @@ print(f'{active} active sandboxes ({len(running)} processes)')
 "
 ```
 
+## Per Agent+Model Trial Progress
+
+```bash
+python3 -c "
+import os, json, glob
+from collections import defaultdict
+
+combos = defaultdict(lambda: {'ok':0,'fail':0,'prog':0})
+for jd in glob.glob('jobs/*'):
+    if not os.path.isdir(jd): continue
+    name = os.path.basename(jd)
+    parts = name.split('__')
+    if len(parts) < 3: continue
+    agent_model = parts[1] + ' + ' + parts[2]
+    for t in os.listdir(jd):
+        tp = os.path.join(jd, t)
+        if not os.path.isdir(tp): continue
+        rp = os.path.join(tp, 'result.json')
+        if os.path.exists(rp):
+            try:
+                with open(rp) as f: r = json.load(f)
+                if r.get('exception_info'): combos[agent_model]['fail'] += 1
+                else: combos[agent_model]['ok'] += 1
+            except: combos[agent_model]['fail'] += 1
+        else:
+            combos[agent_model]['prog'] += 1
+
+print(f'{\"Agent + Model\":<40} {\"OK\":>7} {\"Fail\":>7} {\"Prog\":>6}')
+print('-' * 62)
+for k in sorted(combos, key=lambda x: -combos[x]['ok']):
+    s = combos[k]
+    print(f'{k:<40} {s[\"ok\"]:>7} {s[\"fail\"]:>7} {s[\"prog\"]:>6}')
+"
+```
+
 ## Check Daytona Errors
 
 ```bash
