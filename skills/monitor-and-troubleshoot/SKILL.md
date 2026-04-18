@@ -354,7 +354,16 @@ The `task` table requires these non-null fields:
 
 `ValueError: Job directory already exists and cannot be resumed with a different config.`
 
-This happens when `config.json` in the job directory doesn't match the config you're running with (e.g., different `n_concurrent_trials`). Fix: remove `config.json` from the job directory. But be aware this creates a new job_id and may cause duplicate trials.
+This happens when `config.json` in the job directory doesn't match the config you're running with (e.g., different `n_concurrent_trials`).
+
+**NEVER delete `config.json` to fix this.** Deleting it causes harbor to create a new job_id and re-run ALL trials from scratch, including already successful ones. This wastes compute and creates duplicates (e.g., 1004/900 trials).
+
+**Correct fix:** Always use the original config YAML without modifications. Do not change `n_concurrent_trials` or any other parameter when restarting a crashed job. Just run:
+```bash
+.venv/bin/python3 -u scripts/run_job.py -c <original_config.yaml> -f <error_types>
+```
+
+If `config.json` was already deleted, the damage is done — harbor will create duplicate trials. The extra trials don't break anything (Supabase upsert handles it) but waste resources.
 
 ## Disk Cleanup (Safe)
 
