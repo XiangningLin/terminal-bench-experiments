@@ -1,0 +1,36 @@
+agents:
+- kwargs:
+    api_base: http://pp-api-ec82a10d0c5d226c.elb.us-west-2.amazonaws.com:3000/v1
+    llm_kwargs:
+      api_key: sk-MNGcqk6AbjuKKWXv6qp4ObIm0HpYYzBUSC2vu0GqJtouHZSG
+  model_name: openai/qwen3-max
+  name: terminus-2
+datasets:
+- name: swe-lancer-top100
+  registry:
+    name: local
+    path: outputs/adapter_experiments/batch1/contributors/Xiangning/phase4/registries/swe-lancer-top100.json
+  version: '1.0'
+environment:
+  delete: true
+  force_build: false
+  type: daytona
+job_name: swe-lancer__terminus-2__qwen3-max__batch1__phase4__top100
+jobs_dir: jobs
+n_attempts: 5
+orchestrator:
+  n_concurrent_trials: 32
+  quiet: false
+  retry:
+    exclude_exceptions:
+    - BadRequestError
+    - RateLimitError
+    - AgentTimeoutError
+    - VerifierTimeoutError
+    - RewardFileNotFoundError
+    max_retries: 3
+    max_wait_sec: 60.0
+    min_wait_sec: 1.0
+    wait_multiplier: 1.0
+  type: local
+timeout_multiplier: 1.0

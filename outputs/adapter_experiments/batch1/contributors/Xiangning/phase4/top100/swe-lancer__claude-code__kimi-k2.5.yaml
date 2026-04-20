@@ -1,0 +1,44 @@
+agents:
+- env:
+    ANTHROPIC_AUTH_TOKEN: sk-Hk4k0QdmJHzrcesptmCuRGrLWFn8VklEPKdHGVPaZ12zFN3A
+    ANTHROPIC_BASE_URL: https://api.moonshot.ai/anthropic
+    ANTHROPIC_DEFAULT_HAIKU_MODEL: kimi-k2.5
+    ANTHROPIC_DEFAULT_OPUS_MODEL: kimi-k2.5
+    ANTHROPIC_DEFAULT_SONNET_MODEL: kimi-k2.5
+    ANTHROPIC_MODEL: kimi-k2.5
+    API_TIMEOUT_MS: '3000000'
+    CLAUDE_CODE_SUBAGENT_MODEL: kimi-k2.5
+    ENABLE_TOOL_SEARCH: 'false'
+  kwargs:
+    version: 2.1.81
+  model_name: anthropic/kimi-k2.5
+  name: claude-code
+datasets:
+- name: swe-lancer-top100
+  registry:
+    name: local
+    path: outputs/adapter_experiments/batch1/contributors/Xiangning/phase4/registries/swe-lancer-top100.json
+  version: '1.0'
+environment:
+  delete: true
+  force_build: false
+  type: daytona
+job_name: swe-lancer__claude-code__kimi-k2.5__batch1__phase4__top100
+jobs_dir: jobs
+n_attempts: 5
+orchestrator:
+  n_concurrent_trials: 32
+  quiet: false
+  retry:
+    exclude_exceptions:
+    - BadRequestError
+    - RateLimitError
+    - AgentTimeoutError
+    - VerifierTimeoutError
+    - RewardFileNotFoundError
+    max_retries: 3
+    max_wait_sec: 60.0
+    min_wait_sec: 1.0
+    wait_multiplier: 1.0
+  type: local
+timeout_multiplier: 1.0
